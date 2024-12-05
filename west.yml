@@ -28,5 +28,5 @@ manifest:
       path: modules/lib/gui/wearable
     - name: rtk-display-driver
       remote: realmcu
-      repo-path: Wearable
+      repo-path: HoneyRepo-driver-display
       path: modules/lib/gui/rtk-driver
