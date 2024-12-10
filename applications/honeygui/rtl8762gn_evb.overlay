@@ -2,6 +2,8 @@
  *
  * SPDX-License-Identifier: LicenseRef-Nordic-5-Clause
  */
+ 
+#include <zephyr/dt-bindings/gpio/realtek-rtl87x2g-gpio.h>
 
 &flash {
 	partitions {
@@ -19,15 +21,6 @@
 	};
 };
 
-&ieee802154 {
-	status = "okay";
-};
-
-/ {
-	chosen {
-		zephyr,ieee802154 = &ieee802154;
-	};
-};
 
 &uart2 {
 	pinctrl-0 = <&uart2_default>;
@@ -37,4 +30,20 @@
 	parity = "none";
 	stop-bits = "1";
 	data-bits = <8>;
+};
+
+&gpioa {
+    status = "okay";
+};
+
+&gpiob {
+    status = "okay";
+};
+
+/ {
+    resources {
+        compatible = "test-gpio-basic-api";
+        out-gpios = <&gpioa 0 GPIO_ACTIVE_HIGH>;
+        in-gpios = <&gpiob 1 (GPIO_ACTIVE_HIGH | RTL87X2G_GPIO_INPUT_DEBOUNCE_MS(8))>;
+    };
 };
