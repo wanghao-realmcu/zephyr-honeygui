@@ -5,8 +5,8 @@ manifest:
   remotes:
     - name: rtkconnectivity
       url-base: https://github.com/rtkconnectivity
-    - name: realmcu
-      url-base: https://github.com/realmcu
+    - name: display
+      url-base: ssh://cn4soc.rtkbf.com:29418
 
   projects:
     - name: zephyr
@@ -19,14 +19,14 @@ manifest:
           - tinycrypt
           - mbedtls
     - name: honeygui
-      remote: realmcu
+      remote: display
       repo-path: HoneyGUI
-      path: modules/lib/gui/honeygui
+      path: modules/display/honeygui
     - name: wearable
-      remote: realmcu
+      remote: display
       repo-path: Wearable
-      path: modules/lib/gui/wearable
+      path: modules/display/wearable
     - name: rtk-display-driver
-      remote: realmcu
-      repo-path: HoneyRepo-driver-display
-      path: modules/lib/gui/rtk-driver
+      remote: display
+      repo-path: HoneyRepo/driver/display
+      path: modules/display/rtk-driver
