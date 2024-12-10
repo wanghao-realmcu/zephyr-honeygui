@@ -47,3 +47,7 @@
         in-gpios = <&gpiob 1 (GPIO_ACTIVE_HIGH | RTL87X2G_GPIO_INPUT_DEBOUNCE_MS(8))>;
     };
 };
+
+&dma0 {
+    status = "okay";
+};
