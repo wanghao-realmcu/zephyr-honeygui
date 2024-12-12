@@ -51,3 +51,19 @@
 &dma0 {
     status = "okay";
 };
+
+/
+{
+
+dummy_display: dummy_display {
+	compatible = "bee4,st7701s";
+	height = <100>;
+	width = <100>;
+	status = "okay";
+
+};
+};
+
+
+
+

@@ -4,7 +4,7 @@
 #include <zephyr/logging/log.h>
 #include <stdlib.h>
 #include <zephyr/drivers/uart.h>
-#include <zephyr/usb/usb_device.h>
+#include <zephyr/drivers/display.h>
 #include <ctype.h>
 
 #ifdef CONFIG_ARCH_POSIX
