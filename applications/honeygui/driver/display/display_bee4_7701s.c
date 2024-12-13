@@ -29,6 +29,8 @@ static int bee4_st7701s_display_init(const struct device *dev)
 
 	disp_data->current_pixel_format = PIXEL_FORMAT_ARGB_8888;
 
+	printf("line = %d, name = %s \n", __LINE__, dev->name);
+
 	return 0;
 }
 

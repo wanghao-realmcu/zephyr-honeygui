@@ -1,0 +1,76 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Zephyr Debug (J-Link)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/zephyr/zephyr.elf",
+            "args": [],
+            "stopAtEntry": true,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "miDebuggerPath": "C:/Users/howie_wang.RSDOMAIN/zephyr-sdk-0.16.4/arm-zephyr-eabi/bin/arm-none-eabi-gdb.exe",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty printing",
+                    "text": "enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "Load executable",
+                    "text": "target remote localhost:2331",
+                    "ignoreFailures": false
+                },
+                {
+                    "description": "Set device frequency",
+                    "text": "monitor speed 1000",
+                    "ignoreFailures": false
+                },
+                {
+                    "description": "Reset device",
+                    "text": "monitor reset",
+                    "ignoreFailures": false
+                },
+                {
+                    "description": "Halt device",
+                    "text": "monitor halt",
+                    "ignoreFailures": false
+                },
+                {
+                    "description": "Load program",
+                    "text": "load",
+                    "ignoreFailures": false
+                }
+            ],
+            "launchCompleteCommand": "exec-continue",
+            "filterStdout": true,
+            "filterStderr": true,
+            "serverLaunchTimeout": 10000,
+            "visualizerFile": "${workspaceFolder}/.vscode/gdb/zephyr-vsc.visualizer",
+            //"svdFile": "${workspaceFolder}/path/to/device.svd", // 可选，用于寄存器查看
+            "logging": {
+                "moduleLoad": false,
+                "engineLogging": false,
+                "trace": false,
+                "traceResponse": false
+            },
+            "pipeTransport": {
+                "pipeProgram": "C:/Program Files/SEGGER/JLink/JLinkGDBServer.exe",
+                "pipeArgs": [
+                    "-device", "RTL87x2G",
+                    "-if", "SWD", 
+                    "-speed", "1000",
+                    "-port", "2331"
+                ],
+                "debuggerPath": "C:/Users/howie_wang.RSDOMAIN/zephyr-sdk-0.16.4/arm-zephyr-eabi/bin/arm-none-eabi-gdb.exe",
+                //"debuggerPath": "C:\Users\howie_wang.RSDOMAIN\zephyr-sdk-0.16.4\arm-zephyr-eabi\bin>arm-zephyr-eabi-gdb.exe",
+                "pipeCwd": "${workspaceFolder}",
+                "quoteArgs": true
+            },
+            "preLaunchTask": "Build"
+        }
+    ]
+}

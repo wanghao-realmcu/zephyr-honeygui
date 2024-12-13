@@ -17,10 +17,11 @@ LOG_MODULE_REGISTER(app);
 
 #include <trace.h>
 
+static const struct device *dev = DEVICE_DT_GET(DT_NODELABEL(dummy_display));
+
 
 int main(void)
 {
-	printf("Hollo HoneyGUI! \n");
-	printf("Hollo HoneyGUI! \n");
+	printf("Hollo HoneyGUI!, name = %s \n", dev->name);
 	return 0;
 }
