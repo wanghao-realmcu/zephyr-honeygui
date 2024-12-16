@@ -5,6 +5,8 @@
             "type": "shell",
             "label": "Build",
             "command": "west",
+            //"args": ["build", "-b", "rtl8762gn_evb", "-p"],
+            // "args": ["build", "-b", "rtl8762gn_evb"],
             "args": ["build", "-b", "rtl8762gn_evb", "-p"],
             "group": {
                 "kind": "build",
@@ -22,14 +24,15 @@
         },
         {
             "type": "shell",
-            "label": "flash",
+            "label": "Flash",
             "command": "west",
             "args": ["flash"],
             "problemMatcher": [],
             "group": {
                 "kind": "none",
                 "isDefault": false
-            }
+            },
+            "dependsOn": "Build"
         }
     ]
 }
