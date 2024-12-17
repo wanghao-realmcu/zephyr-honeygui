@@ -3,14 +3,14 @@ manifest:
     path: zephyr-honeygui
 
   remotes:
-    - name: rtkconnectivity
-      url-base: https://github.com/rtkconnectivity
+    - name: wanghao-realmcu
+      url-base: https://github.com/wanghao-realmcu
     - name: display
       url-base: ssh://cn4soc.rtkbf.com:29418
 
   projects:
     - name: zephyr
-      remote: rtkconnectivity
+      remote: wanghao-realmcu
       revision: realtek-main-v3.5.0
       import:
         name-allowlist:
@@ -22,6 +22,11 @@ manifest:
       remote: display
       repo-path: HoneyGUI
       path: modules/display/honeygui
+    - name: lvgl
+      remote: wanghao-realmcu
+      repo-path: lvgl
+      path: modules/display/lvgl
+      revision: 2b498e6f36d6b82ae1da12c8b7742e318624ecf5
     - name: wearable
       remote: display
       repo-path: Wearable
