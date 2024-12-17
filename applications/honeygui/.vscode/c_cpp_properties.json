@@ -7,7 +7,10 @@
                 "../../../modules",
                 "../../../zephyr",
                 "../../../zephyr/include",
-                "../../../zephyr/lib/libc/armstdc/include"
+                "../../../zephyr/lib/libc/armstdc/include",
+                "../../../modules/hal/realtek/bee/rtl87x2g/boot/inc",
+                "G:/zephyr-honeygui/modules/hal/realtek/bee/rtl87x2g/sdk_lib/inc",
+                "G:/zephyr-honeygui/modules/display/wearable/device/lcd/8762G"
             ],
             "defines": [
                 "_DEBUG",

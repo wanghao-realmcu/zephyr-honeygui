@@ -12,6 +12,7 @@
 
 #include <zephyr/drivers/display.h>
 #include <zephyr/device.h>
+#include "st7701s_480480_rgb.h"
 
 
 struct bee4_st7701s_display_config {
@@ -23,15 +24,39 @@ struct bee4_st7701s_display_data {
 	enum display_pixel_format current_pixel_format;
 };
 
+static uint8_t *fb0 = 0x08000000;
+static uint8_t *fb1 = 0x08100000;
+
 static int bee4_st7701s_display_init(const struct device *dev)
 {
 	struct bee4_st7701s_display_data *disp_data = dev->data;
 
-	disp_data->current_pixel_format = PIXEL_FORMAT_ARGB_8888;
+	disp_data->current_pixel_format = PIXEL_FORMAT_RGB_565;
 
 	printf("line = %d, name = %s \n", __LINE__, dev->name);
 
+	rtk_lcd_hal_init();
+
+	rtk_lcd_hal_update_framebuffer(fb0, 0);
+
 	return 0;
+}
+
+static void lcd_update_window(uint8_t *input, uint8_t *output, uint16_t xStart, uint16_t yStart,
+                              uint16_t w, uint16_t h)
+{
+
+    uint16_t *read = (uint16_t *)input;
+    uint16_t *write = (uint16_t *)output;
+
+    for (uint32_t i = yStart; i < (h + yStart); i++)
+    {
+        for (uint32_t j = xStart; j < (w + xStart); j++)
+        {
+            write[i * 480 + j] = *read;
+            read++;
+        }
+    }
 }
 
 static int bee4_st7701s_display_write(const struct device *dev, const uint16_t x,
@@ -41,20 +66,25 @@ static int bee4_st7701s_display_write(const struct device *dev, const uint16_t x
 {
 	const struct bee4_st7701s_display_config *config = dev->config;
 
-	__ASSERT(desc->width <= desc->pitch, "Pitch is smaller then width");
-	__ASSERT(desc->pitch <= config->width,
-		"Pitch in descriptor is larger than screen size");
-	__ASSERT(desc->height <= config->height,
-		"Height in descriptor is larger than screen size");
-	__ASSERT(x + desc->pitch <= config->width,
-		 "Writing outside screen boundaries in horizontal direction");
-	__ASSERT(y + desc->height <= config->height,
-		 "Writing outside screen boundaries in vertical direction");
 
-	if (desc->width > desc->pitch ||
-	    x + desc->pitch > config->width ||
-	    y + desc->height > config->height) {
-		return -EINVAL;
+	bool full_fb = false;
+	if((desc->width == 480) && (desc->height == 480) && (x == 0) && (y == 0))
+	{
+		full_fb = true;	
+	}
+	if(full_fb == true)
+	{
+		rtk_lcd_hal_update_framebuffer(buf, desc->buf_size);
+	}
+	else /* We must use partial framebuffer copy */
+	{
+		/*
+			* We must copy the entire current framebuffer to new
+			* buffer, since we wil change the active buffer
+			* address
+			*/
+		//todo by howie
+
 	}
 
 	return 0;

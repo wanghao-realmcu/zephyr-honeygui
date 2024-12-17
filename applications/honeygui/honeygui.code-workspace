@@ -9,7 +9,11 @@
 			"version.h": "c",
 			"stdlib.h": "c",
 			"trace.h": "c",
-			"kernel.h": "c"
+			"kernel.h": "c",
+			"unistd.h": "c",
+			"cstdio": "c",
+			"st7701s_480480_rgb.h": "c",
+			"fmc_platform.h": "c"
 		}
 	}
 }
