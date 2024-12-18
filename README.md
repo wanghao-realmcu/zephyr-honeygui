@@ -127,8 +127,7 @@ code**\" in the zephyr official getting-started guide.
 **Windows:**
 
 ```
-west init -m https://github.com/wanghao-realmcu/zephyr-honeygui
-zephyr-rtk-project
+west init -m https://github.com/wanghao-realmcu/zephyr-honeygui zephyr-honeygui
 ```
 ```
 cd zephyr-rtk-project
